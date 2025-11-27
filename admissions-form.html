@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sri Aditya Degree College - Admission Enquiry</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      /* College students background - vibrant campus scene */
+      background: url('https://img.freepik.com/premium-photo/admission-word-made-with-building-blocks_384948-230.jpg?w=2000') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .container {
+      /* Eye-catching orange to blue gradient */
+      background: linear-gradient(135deg, #ff6b00, #004080);
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      padding: 35px 40px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      font-size: 24px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .form-group {
+      margin-bottom: 22px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.3);
+      font-size: 15px;
+      transition: all 0.3s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      backdrop-filter: blur(10px);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #fff;
+      box-shadow: 0 0 15px rgba(255,107,0,0.5);
+      transform: translateY(-2px);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(45deg, #ff6b00, #ff8c00);
+      color: white;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 15px rgba(255,107,0,0.4);
+    }
+    button:hover {
+      background: linear-gradient(45deg, #ff8c00, #ff6b00);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255,107,0,0.6);
+    }
+    #successMsg {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255,255,255,0.95);
+      border: 2px solid #4CAF50;
+      border-radius: 12px;
+      color: #2e7d32;
+      font-weight: 700;
+      text-align: center;
+      display: none;
+      box-shadow: 0 5px 20px rgba(76,175,80,0.3);
+      animation: slideIn 0.5s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Sri Aditya Degree College</h1>
+    <h2 style="text-align:center; margin-bottom:30px; font-size:18px; opacity:0.9;">Admission Enquiry Form</h2>
+    <form id="enquiryForm">
+      <div class="form-group">
+        <label for="name">👤 Student Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">📧 Email ID</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">📱 Mobile Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your mobile number" required />
+      </div>
+      <div class="form-group">
+        <label for="group">🎯 Choose Group / Course</label>
+        <select id="group" name="group" required>
+          <option value="">Select group</option>
+          <option value="BSC-AIR">BSC-AIR</option>
+          <option value="BSC-CS">BSC-CS</option>
+          <option value="BSC-DS">BSC-DS</option>
+          <option value="BCA">BCA</option>
+          <option value="BCA-DS">BCA-DS</option>
+          <option value="BBA-DM">BBA-DM</option>
+          <option value="B.com-CA">B.com-CA</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">💬 Your Query</label>
+        <textarea id="message" name="message" placeholder="Ask about fees, hostel, scholarships, etc."></textarea>
+      </div>
+      <button type="submit">🚀 Submit Enquiry</button>
+    </form>
+    <div id="successMsg">✅ Thank you! Your enquiry is ready in WhatsApp. Check your phone!</div>
+  </div>
+
+  <script>
+    const form = document.getElementById("enquiryForm");
+    const successMsg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const group = document.getElementById("group").value;
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !phone || !group) {
+        alert("Please fill all required fields marked with *");
+        return;
+      }
+
+      let whatsappMessage = `🎓 Sri Aditya Degree College Admission Enquiry:%0A%0A`;
+      whatsappMessage += `👤 Name: ${name}%0A`;
+      whatsappMessage += `📧 Email: ${email}%0A`;
+      whatsappMessage += `📱 Phone: ${phone}%0A`;
+      whatsappMessage += `🎯 Course: ${group}%0A`;
+      if (message) whatsappMessage += `%0A💬 Query: ${message}`;
+
+      const yourWhatsAppNumber = "919949329687";
+      const whatsappURL = `https://wa.me/${yourWhatsAppNumber}?text=${whatsappMessage}`;
+      window.open(whatsappURL, "_blank");
+
+      successMsg.style.display = "block";
+      form.reset();
+      document.body.scrollTop = 0;
+    });
+  </script>
+</body>
+</html>
